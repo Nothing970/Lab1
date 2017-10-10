@@ -1,7 +1,6 @@
 package com.pair;
 
 import java.util.Stack;
-
 public class Short_path {
 	Short_path next;
 	Stack<String> path;
