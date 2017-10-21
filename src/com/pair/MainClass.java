@@ -33,23 +33,23 @@ import javax.swing.filechooser.FileFilter;
 import com.graphviz.GraphViz;
 
 public class MainClass {
-	private static int circulate = 0;// Ëæ»úÓÎ×ßÍ£Ö¹¿ØÖÆ
-	private static String OriginPath = null;// txt µÄÄ¿Â¼
-	private static Hashtable<String, Graph_vertex> g = null;// Í¼½á¹¹
-	private static Short_path spath = null;// ´æ´¢×î¶ÌÂ·¾¶µÄ¶àÌõÂ·¾¶
-	private static String StartWord = null;// Ëæ»úÓÎ×ßÆğÊ¼µ¥´Ê
-	private static Hashtable<String, Graph_vertex> path = null;// Ëæ»úÓÎ×ßËùĞèµÄÍ¼½á¹¹£¬²»ÄÜÓëÔ­Í¼¹«ÓÃ
-	private static Set<String> multiShortPath = new HashSet<String>();// ×î¶ÌÂ·¾¶Ö»ÊäÒ»¸öµ¥´Ê£¬´æ´¢Î´µ½´ï¹ıµÄµã
+	private static int circulate = 0;// éšæœºæ¸¸èµ°åœæ­¢æ§åˆ¶
+	private static String OriginPath = null;// txt çš„ç›®å½•
+	private static Hashtable<String, Graph_vertex> g = null;// å›¾ç»“æ„
+	private static Short_path spath = null;// å­˜å‚¨æœ€çŸ­è·¯å¾„çš„å¤šæ¡è·¯å¾„
+	private static String StartWord = null;// éšæœºæ¸¸èµ°èµ·å§‹å•è¯
+	private static Hashtable<String, Graph_vertex> path = null;// éšæœºæ¸¸èµ°æ‰€éœ€çš„å›¾ç»“æ„ï¼Œä¸èƒ½ä¸åŸå›¾å…¬ç”¨
+	private static Set<String> multiShortPath = new HashSet<String>();// æœ€çŸ­è·¯å¾„åªè¾“ä¸€ä¸ªå•è¯ï¼Œå­˜å‚¨æœªåˆ°è¾¾è¿‡çš„ç‚¹
 
 	public static void main(String[] args) {
-		JFrame mainFrame = new JFrame("»¶Ó­Ê¹ÓÃ");
+		JFrame mainFrame = new JFrame("æ¬¢è¿ä½¿ç”¨");
 
-		JButton create = new JButton("Éú³ÉÓĞÏòÍ¼");
-		JButton show = new JButton("Õ¹Ê¾Í¼Æ¬");
-		JButton query = new JButton("²éÑ¯ÇÅ½Ó´Ê");
-		JButton generate = new JButton("Éú³ÉĞÂÎÄ±¾");
-		JButton calc = new JButton("×î¶ÌÂ·¾¶");
-		JButton random = new JButton("Ëæ¼´ÓÎ×ß");
+		JButton create = new JButton("ç”Ÿæˆæœ‰å‘å›¾");
+		JButton show = new JButton("å±•ç¤ºå›¾ç‰‡");
+		JButton query = new JButton("æŸ¥è¯¢æ¡¥æ¥è¯");
+		JButton generate = new JButton("ç”Ÿæˆæ–°æ–‡æœ¬");
+		JButton calc = new JButton("æœ€çŸ­è·¯å¾„");
+		JButton random = new JButton("éšå³æ¸¸èµ°");
 
 		show.setEnabled(false);
 		query.setEnabled(false);
@@ -59,17 +59,17 @@ public class MainClass {
 
 		mainFrame.setLayout(null);
 		create.setBounds(30, 60, 120, 40);
-		create.setFont(new java.awt.Font("¿¬Êé", 1, 15));
+		create.setFont(new java.awt.Font("æ¥·ä¹¦", 1, 15));
 		show.setBounds(180, 60, 120, 40);
-		show.setFont(new java.awt.Font("¿¬Êé", 1, 15));
+		show.setFont(new java.awt.Font("æ¥·ä¹¦", 1, 15));
 		query.setBounds(330, 60, 120, 40);
-		query.setFont(new java.awt.Font("¿¬Êé", 1, 15));
+		query.setFont(new java.awt.Font("æ¥·ä¹¦", 1, 15));
 		generate.setBounds(30, 160, 120, 40);
-		generate.setFont(new java.awt.Font("¿¬Êé", 1, 15));
+		generate.setFont(new java.awt.Font("æ¥·ä¹¦", 1, 15));
 		calc.setBounds(180, 160, 120, 40);
-		calc.setFont(new java.awt.Font("¿¬Êé", 1, 15));
+		calc.setFont(new java.awt.Font("æ¥·ä¹¦", 1, 15));
 		random.setBounds(330, 160, 120, 40);
-		random.setFont(new java.awt.Font("¿¬Êé", 1, 15));
+		random.setFont(new java.awt.Font("æ¥·ä¹¦", 1, 15));
 
 		create.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -94,7 +94,7 @@ public class MainClass {
 				try {
 					runPath = f.getCanonicalPath();
 				} catch (IOException e) {
-					// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+					// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 					e.printStackTrace();
 				}
 				show.setEnabled(false);
@@ -178,7 +178,7 @@ public class MainClass {
 			e.printStackTrace();
 		}
 		int c = 0;
-		int flag = 0;// ¶ÁÈ¡µ¥´Ê¿ªÊ¼±ê¼Ç£¬¶Áµ½×ÖÄ¸ÖÃÎª1£¬²Ù×÷µ¥´ÊÖ®ºóÖÃÎª0
+		int flag = 0;// è¯»å–å•è¯å¼€å§‹æ ‡è®°ï¼Œè¯»åˆ°å­—æ¯ç½®ä¸º1ï¼Œæ“ä½œå•è¯ä¹‹åç½®ä¸º0
 		while (c != -1) {
 			try {
 				c = f.read();
@@ -190,24 +190,24 @@ public class MainClass {
 				flag = 1;
 			} else if (flag == 1) {
 				cur_str = cur_str.toLowerCase();
-				// ÅĞ¶Ïµ¥´ÊÊÇ·ñÖØ¸´
+				// åˆ¤æ–­å•è¯æ˜¯å¦é‡å¤
 				if (g.get(cur_str) == null) {
 					cur_vertex = new Graph_vertex(cur_str);
 					g.put(cur_str, cur_vertex);
 				}
 				cur_vertex = g.get(cur_str);
-				// µÚÒ»¸öµ¥´Ê²»×ö²Ù×÷
+				// ç¬¬ä¸€ä¸ªå•è¯ä¸åšæ“ä½œ
 				if (!pre_str.equals("")) {
 					Node tmp_Node = pre_vertex.links;
 					while (tmp_Node != null) {
-						// ±ßÒÑ¾­´æÔÚ£¬È¨ÖØ¼Ó1
+						// è¾¹å·²ç»å­˜åœ¨ï¼Œæƒé‡åŠ 1
 						if (tmp_Node.link_vertex.word.equals(cur_str)) {
 							tmp_Node.weight++;
 							break;
 						}
 						tmp_Node = tmp_Node.next;
 					}
-					// ±ß²»´æÔÚ£¬Ìí¼Ó±ß
+					// è¾¹ä¸å­˜åœ¨ï¼Œæ·»åŠ è¾¹
 					if (tmp_Node == null) {
 						Node new_node = new Node(pre_vertex.links, cur_vertex);
 						pre_vertex.links = new_node;
@@ -229,7 +229,7 @@ public class MainClass {
 		Node tmp_node=null;
 		GraphViz gViz = new GraphViz("dot.exe");
 		gViz.start_graph();
-		// ±éÀúÃ¿¸öµ¥´Ê£¬°ÑÃ¿¸öµÄËùÓĞ±ßĞ´Èë½Å±¾ÎÄ¼ş
+		// éå†æ¯ä¸ªå•è¯ï¼ŒæŠŠæ¯ä¸ªçš„æ‰€æœ‰è¾¹å†™å…¥è„šæœ¬æ–‡ä»¶
 		for (String word : G.keySet()) {
 			tmp_node=G.get(word).links;
 			while (tmp_node != null) {
@@ -241,7 +241,7 @@ public class MainClass {
 		}
 		gViz.end_graph();
 		try {
-			gViz.run();// ÓÉ½Å±¾ÎÄ¼şÉú³ÉÍ¼Æ¬
+			gViz.run();// ç”±è„šæœ¬æ–‡ä»¶ç”Ÿæˆå›¾ç‰‡
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -249,14 +249,14 @@ public class MainClass {
 
 	public static String queryBridgeWords(
 			Hashtable<String, Graph_vertex> G, String word1, String word2) {
-		int bridgeNum = 0;// ±ê¼ÇÇÅ½Ó´ÊÊıÁ¿
+		int bridgeNum = 0;// æ ‡è®°æ¡¥æ¥è¯æ•°é‡
 		StringBuffer ret = new StringBuffer(
 				"The bridge words from \"" + word1 + "\" to \"" + word2
 						+ "\" are: ");
 		String cur_str = "";
 		Graph_vertex mid_ver = null;
 		Node tmp_node = null;
-		// ÅĞ¶Ïword1¡¢word2ÊÇ·ñ´æÔÚ
+		// åˆ¤æ–­word1ã€word2æ˜¯å¦å­˜åœ¨
 		try {
 			tmp_node = G.get(word1).links;
 		} catch (Exception e) {
@@ -266,12 +266,12 @@ public class MainClass {
 			return "No \"" + word2 + "\" in the graph!";
 		}
 		// word1->mid_ver->word2
-		Node mid_node = null;// mid_ver³ö±ßÖ¸ÏòµÄµã
+		Node mid_node = null;// mid_verå‡ºè¾¹æŒ‡å‘çš„ç‚¹
 		while(tmp_node!=null) {
-			mid_ver = tmp_node.link_vertex;// ¿ÉÄÜµÄÇÅ½Ó´Ê
+			mid_ver = tmp_node.link_vertex;// å¯èƒ½çš„æ¡¥æ¥è¯
 			mid_node = mid_ver.links;
 			cur_str = mid_ver.word;
-			// ÅĞ¶Ïmid_verÖ¸³öµÄµãÊÇ·ñº¬ÓĞword2
+			// åˆ¤æ–­mid_veræŒ‡å‡ºçš„ç‚¹æ˜¯å¦å«æœ‰word2
 			while(mid_node!=null) {
 				if (mid_node.link_vertex.word.equals(word2)) {
 					bridgeNum++;
@@ -282,7 +282,7 @@ public class MainClass {
 			}
 			tmp_node = tmp_node.next;
 		}
-		// ĞŞ¸Ä½á¹û×Ö·û´®
+		// ä¿®æ”¹ç»“æœå­—ç¬¦ä¸²
 		ret.deleteCharAt(ret.length() - 1);
 		int len = ret.length();
 		if (bridgeNum == 0) {
@@ -300,15 +300,15 @@ public class MainClass {
 
 	public static String calcShortestPath(Hashtable<String, Graph_vertex> G,
 			String word1, String word2) {
-		// ²ÉÓÃÉî¶ÈÓÅÏÈ±éÀúºÍ·ÖÖ§ÏŞ½ç·¨£¬ÏÈÕÒµ½Ò»ÌõÂ·¾¶¿ÉĞĞ½â£¬¼ÌĞøÉî¶ÈÓÅÏÈËÑË÷£¬µ±Ç°Â·¾¶³¤¶È´óÓÚ¿ÉĞĞ½â£¬¶ªÆú
-		// Â·¾¶£¬µÈÓÚ¿ÉĞĞ½âºÏ²¢£¬Ğ¡ÓÚ¸üĞÂ¿ÉĞĞ½â£¬×îºóµÄÎª×îÓÅ½â
-		Stack<Node> node_sta = new Stack<Node>();// ´æ·ÅÏÂ´ÎÒª·ÃÎÊµÄ½áµã
-		Stack<Graph_vertex> ver_sta = new Stack<Graph_vertex>();// Â·¾¶ÉÏµÄµã
-		Stack<String> str_sta = new Stack<String>();// Â·¾¶ÉÏµãµÄ×Ö·û´®
-		Stack<Integer> int_sta = new Stack<Integer>();// Â·¾¶ÉÏ±ßµÄ³¤¶È
+		// é‡‡ç”¨æ·±åº¦ä¼˜å…ˆéå†å’Œåˆ†æ”¯é™ç•Œæ³•ï¼Œå…ˆæ‰¾åˆ°ä¸€æ¡è·¯å¾„å¯è¡Œè§£ï¼Œç»§ç»­æ·±åº¦ä¼˜å…ˆæœç´¢ï¼Œå½“å‰è·¯å¾„é•¿åº¦å¤§äºå¯è¡Œè§£ï¼Œä¸¢å¼ƒ
+		// è·¯å¾„ï¼Œç­‰äºå¯è¡Œè§£åˆå¹¶ï¼Œå°äºæ›´æ–°å¯è¡Œè§£ï¼Œæœ€åçš„ä¸ºæœ€ä¼˜è§£
+		Stack<Node> node_sta = new Stack<Node>();// å­˜æ”¾ä¸‹æ¬¡è¦è®¿é—®çš„ç»“ç‚¹
+		Stack<Graph_vertex> ver_sta = new Stack<Graph_vertex>();// è·¯å¾„ä¸Šçš„ç‚¹
+		Stack<String> str_sta = new Stack<String>();// è·¯å¾„ä¸Šç‚¹çš„å­—ç¬¦ä¸²
+		Stack<Integer> int_sta = new Stack<Integer>();// è·¯å¾„ä¸Šè¾¹çš„é•¿åº¦
 		Graph_vertex tmp_vertex = G.get(word2);
-		spath = null;// ×î¶ÌÂ·¾¶¿ÉĞĞ½â
-		// ÅĞ¶Ïword1¡¢word2ÊÇ·ñ´æÔÚ
+		spath = null;// æœ€çŸ­è·¯å¾„å¯è¡Œè§£
+		// åˆ¤æ–­word1ã€word2æ˜¯å¦å­˜åœ¨
 		if (tmp_vertex == null) {
 			return "\"" + word2 + "\" is not exist!";
 		}
@@ -320,7 +320,7 @@ public class MainClass {
 		String tmp_str = word1;
 		int path_len=0;
 		int cur_shortest = 0x7f7f7f7f;
-		// ÅĞ¶Ïword1ÊÇ·ñÓĞ³ö±ß
+		// åˆ¤æ–­word1æ˜¯å¦æœ‰å‡ºè¾¹
 		if(tmp_node==null) {
 			return "Do not arrive!";
 		}
@@ -328,10 +328,10 @@ public class MainClass {
 		ver_sta.push(tmp_vertex);
 		str_sta.push(tmp_str);
 		int_sta.push(0);
-		// Éî¶ÈÓÅÏÈËÑË÷
+		// æ·±åº¦ä¼˜å…ˆæœç´¢
 		while(!ver_sta.isEmpty()) {
 			tmp_node=node_sta.peek();
-			// µ±Ç°²»ÄÜ¼ÌĞøÏòÏÂËÑË÷»òÕßµ±Ç°Â·¾¶´óÓÚ¿ÉĞĞ½âÂ·¾¶³¤¶È
+			// å½“å‰ä¸èƒ½ç»§ç»­å‘ä¸‹æœç´¢æˆ–è€…å½“å‰è·¯å¾„å¤§äºå¯è¡Œè§£è·¯å¾„é•¿åº¦
 			if (tmp_node == null || path_len > cur_shortest) {
 				path_len -= int_sta.peek();
 				ver_sta.pop();
@@ -339,13 +339,13 @@ public class MainClass {
 				node_sta.pop();
 				int_sta.pop();
 			}
-			// µ±Ç°½áµãÒÑ¾­´æÈëµ±Ç°Â·¾¶¶øÇÒµ±Ç°½áµã²»ÊÇÄ¿±ê½áµã£¨×Ô»·£©
+			// å½“å‰ç»“ç‚¹å·²ç»å­˜å…¥å½“å‰è·¯å¾„è€Œä¸”å½“å‰ç»“ç‚¹ä¸æ˜¯ç›®æ ‡ç»“ç‚¹ï¼ˆè‡ªç¯ï¼‰
 			else if (str_sta.contains(tmp_node.link_vertex.word) &&
 					!tmp_node.link_vertex.word.equals(word2)) {
 				node_sta.pop();
 				node_sta.push(tmp_node.next);
 			}
-			// ½øÈëÏÂÒ»²ã
+			// è¿›å…¥ä¸‹ä¸€å±‚
 			else {
 				path_len += tmp_node.weight;
 				tmp_vertex=tmp_node.link_vertex;
@@ -356,7 +356,7 @@ public class MainClass {
 				ver_sta.push(tmp_vertex);
 				str_sta.push(tmp_str);
 				int_sta.push(tmp_node.weight);
-				// ÕÒµ½¿ÉĞĞ½â
+				// æ‰¾åˆ°å¯è¡Œè§£
 				if (tmp_str.equals(word2) && path_len <= cur_shortest) {
 					if (path_len < cur_shortest) {
 						cur_shortest = path_len;
@@ -372,13 +372,13 @@ public class MainClass {
 				}
 			}
 		}
-		// ÕÒµ½×îÓÅ½â
+		// æ‰¾åˆ°æœ€ä¼˜è§£
 		if (cur_shortest < 0x7f7f7f7f) {
 			String paths_String = "Shortest Lenth:"
 					+ String.valueOf(cur_shortest) + "\n";
 			Short_path tmpSPath = spath.clone();
 			int i = 1;
-			// Æ´½ÓÂ·¾¶½á¹û
+			// æ‹¼æ¥è·¯å¾„ç»“æœ
 			while (tmpSPath != null) {
 
 				paths_String += "Path" + i + ": " + PrintPath(tmpSPath.path)
@@ -388,7 +388,7 @@ public class MainClass {
 			}
 			return paths_String;
 		}
-		// ÎŞ½â
+		// æ— è§£
 		else {
 			return "Do not arrive!";
 		}
@@ -396,16 +396,16 @@ public class MainClass {
 
 	public static String generateNewText(Hashtable<String, Graph_vertex> G,
 			String inputText) {
-		inputText += " ";// ±£Ö¤×îºóÒ»¸öµ¥´ÊÓĞ·Ç×ÖÄ¸×Ö·û
+		inputText += " ";// ä¿è¯æœ€åä¸€ä¸ªå•è¯æœ‰éå­—æ¯å­—ç¬¦
 		byte[] chars = inputText.getBytes();
 		String str1 = "";
 		String str2 = "";
 		String query_ret = "";
 		StringBuffer new_ret = new StringBuffer();
-		Hashtable<Integer, Integer> location = new Hashtable<>();// ¼ÇÂ¼Ã¿¸öÇÅ½Ó´ÊÔÚÇÅ½Ó´Ê²éÑ¯½á¹û´®ÖĞµÄÎ»ÖÃ
+		Hashtable<Integer, Integer> location = new Hashtable<>();// è®°å½•æ¯ä¸ªæ¡¥æ¥è¯åœ¨æ¡¥æ¥è¯æŸ¥è¯¢ç»“æœä¸²ä¸­çš„ä½ç½®
 		int select_ctn = 0;
 		int rand = 0;
-		int flag = 0;// Îª1×ÖÄ¸¶ÁÈëstr1£¬Îª2×ÖÄ¸¶ÁÈëstr2
+		int flag = 0;// ä¸º1å­—æ¯è¯»å…¥str1ï¼Œä¸º2å­—æ¯è¯»å…¥str2
 		int len = inputText.length();
 		int j = 0;
 		for (int i = 0; i < len; i++) {
@@ -418,29 +418,29 @@ public class MainClass {
 					str2 += (char) chars[i];
 				}
 			}
-			// ¶Áµ½µÄµÚÒ»¸öµ¥´ÊÌØÊâ´¦Àí
+			// è¯»åˆ°çš„ç¬¬ä¸€ä¸ªå•è¯ç‰¹æ®Šå¤„ç†
 			else if(flag==1) {
 				new_ret.append(str1 + " ");
 				flag = 2;
 			}
-			//str1ÒÑ¾­¶Áµ½£¬±£Ö¤str2²»Îª¿Õ
+			//str1å·²ç»è¯»åˆ°ï¼Œä¿è¯str2ä¸ä¸ºç©º
 			else if ((!str2.equals(""))) { 
-				query_ret = queryBridgeWords(G, str1, str2);// ²éÇÅ½Ó´Ê½á¹û
-				// ÕÒµ½ÇÅ½Ó´Ê
+				query_ret = queryBridgeWords(G, str1, str2);// æŸ¥æ¡¥æ¥è¯ç»“æœ
+				// æ‰¾åˆ°æ¡¥æ¥è¯
 				if (query_ret.indexOf(':') > 0) {
 					System.out.println(query_ret);
 					j = query_ret.indexOf(", and ");
-					if (j > 0) {// ¶à¸öÇÅ½Ó´Ê
-						// ·µ»Ø´®ÖĞ×îºóÒ»¸öÇÅ½Ó´ÊÌØÊâ´¦Àí
+					if (j > 0) {// å¤šä¸ªæ¡¥æ¥è¯
+						// è¿”å›ä¸²ä¸­æœ€åä¸€ä¸ªæ¡¥æ¥è¯ç‰¹æ®Šå¤„ç†
 						location.put(select_ctn++, j + 6);
 						while (query_ret.lastIndexOf(",", j - 1) > 0) {
 							j = query_ret.lastIndexOf(",", j - 1);
 							location.put(select_ctn, j + 1);
 						}
-						// ·µ»Ø´®ÖĞµÚÒ»¸öÇÅ½Ó´ÊÌØÊâ´¦Àí
+						// è¿”å›ä¸²ä¸­ç¬¬ä¸€ä¸ªæ¡¥æ¥è¯ç‰¹æ®Šå¤„ç†
 						location.put(select_ctn++,
 								query_ret.lastIndexOf(":") + 2);
-						// Ëæ»úÕÒÇÅ½Ó´Ê
+						// éšæœºæ‰¾æ¡¥æ¥è¯
 						long tmplong = System.currentTimeMillis()
 								% select_ctn;
 						rand = (int) tmplong;
@@ -450,7 +450,7 @@ public class MainClass {
 							e.printStackTrace();
 						}
 						rand = location.get(rand);
-					} else {// 1¸öÇÅ½Ó´Ê
+					} else {// 1ä¸ªæ¡¥æ¥è¯
 						rand = query_ret.indexOf(":") + 2;
 					}
 					// rand save the index of a bridge word's begin_location
@@ -473,13 +473,13 @@ public class MainClass {
 	}
 
 	public static String randomWalk(Hashtable<String, Graph_vertex> G) {
-		// StartWordÀàµÄ¾²Ì¬±äÁ¿£¬º¯ÊıÍâ²¿¸³Öµ
+		// StartWordç±»çš„é™æ€å˜é‡ï¼Œå‡½æ•°å¤–éƒ¨èµ‹å€¼
 		Node tmp_node = null;
-		// ¿ªÊ¼µ¥´ÊÃ»ÓĞ³ö±ß
+		// å¼€å§‹å•è¯æ²¡æœ‰å‡ºè¾¹
 		if (G.get(StartWord).children == 0) {
 			return "No next";
 		}
-		// Ëæ»úÕÒStartWordµÄÒ»¸ö³ö±ß
+		// éšæœºæ‰¾StartWordçš„ä¸€ä¸ªå‡ºè¾¹
 		long tmplong = System.currentTimeMillis() % G.get(StartWord).children;
 		int rand = (int) tmplong;
 		tmp_node = G.get(StartWord).links;
@@ -492,9 +492,9 @@ public class MainClass {
 			}
 			tmp_node = tmp_node.next;
 		}
-		// ¶ÔÓ¦µ¥´ÊµÄ³ö±ß¼õÉÙ
+		// å¯¹åº”å•è¯çš„å‡ºè¾¹å‡å°‘
 		G.get(StartWord).children--;
-		// ±ê¼Ç±ßÒÑ¾­×ß¹ı
+		// æ ‡è®°è¾¹å·²ç»èµ°è¿‡
 		tmp_node.weight = 0;
 		return tmp_node.link_vertex.word;
 	}
@@ -503,7 +503,7 @@ public class MainClass {
 
 	
 	public static String PrintPath(Stack<String> path_st) {
-		// path_st´æ·ÅÂ·¾¶£¬×ªÎª×Ö·û´®´æÈëtoPrint
+		// path_stå­˜æ”¾è·¯å¾„ï¼Œè½¬ä¸ºå­—ç¬¦ä¸²å­˜å…¥toPrint
 		StringBuffer toPrint = new StringBuffer();
 		Stack<String> tmpStack = (Stack<String>) path_st.clone();
 		String str1 = "";
@@ -523,7 +523,7 @@ public class MainClass {
 
 	
 	public static String OpenFile() {
-		// Ñ¡È¡ÎÄ¼şµ¯´°
+		// é€‰å–æ–‡ä»¶å¼¹çª—
 		JFileChooser file = new JFileChooser(".");
 		FileFilter tmp = new FileFilter() {
 			public String getDescription() {
@@ -548,11 +548,11 @@ public class MainClass {
 
 	
 	public static void CreatePicture(String pictureName) {
-		// Í»³öÂ·¾¶ÑÕÉ«
+		// çªå‡ºè·¯å¾„é¢œè‰²
 		GraphViz pr = new GraphViz("dot.exe");
 		Short_path tmpPath = spath.clone();
 		int i = 0;
-		pr.clearTmpDotFile("ShortPath.dot");// É¾³ıÖ®Ç°½Å±¾ÎÄ¼ş
+		pr.clearTmpDotFile("ShortPath.dot");// åˆ é™¤ä¹‹å‰è„šæœ¬æ–‡ä»¶
 		while (tmpPath != null) {
 			pr.setColorForPath(tmpPath.path,
 					GraphViz.color[i % GraphViz.color.length], "ShortPath.dot");
@@ -565,7 +565,7 @@ public class MainClass {
 	
 
 	public static JFrame WindowShowPicture(String picturePath) {
-		JFrame secondFrame = new JFrame("Õ¹Ê¾Í¼Æ¬");
+		JFrame secondFrame = new JFrame("å±•ç¤ºå›¾ç‰‡");
 		JLabel picture = new JLabel();
 		JPanel panel = new JPanel();
 		JScrollPane sp = new JScrollPane(panel);
@@ -599,16 +599,16 @@ public class MainClass {
 
 	
 	public static JFrame WindowShowShortPath() {
-		JFrame thirdFrame = new JFrame("×î¶ÌÂ·¾¶");
+		JFrame thirdFrame = new JFrame("æœ€çŸ­è·¯å¾„");
 		JTextField textWord1 = new JTextField("", 30);
 		JTextField textWord2 = new JTextField("", 30);
-		JLabel labelWord1 = new JLabel("ÊäÈëµ¥´Ê1");
-		JLabel labelWord2 = new JLabel("ÊäÈëµ¥´Ê2");
-		JLabel labelOut = new JLabel("×î¶ÌÂ·¾¶");
+		JLabel labelWord1 = new JLabel("è¾“å…¥å•è¯1");
+		JLabel labelWord2 = new JLabel("è¾“å…¥å•è¯2");
+		JLabel labelOut = new JLabel("æœ€çŸ­è·¯å¾„");
 		JTextArea textOut = new JTextArea("", 10, 30);
-		JButton showPath = new JButton("Éú³ÉÂ·¾¶");
-		JButton showPicture = new JButton("ÏÔÊ¾Í¼Æ¬");
-		JButton stop = new JButton("Í£Ö¹");
+		JButton showPath = new JButton("ç”Ÿæˆè·¯å¾„");
+		JButton showPicture = new JButton("æ˜¾ç¤ºå›¾ç‰‡");
+		JButton stop = new JButton("åœæ­¢");
 		JScrollPane spOut = new JScrollPane(textOut);
 
 		thirdFrame.setLayout(null);
@@ -624,9 +624,9 @@ public class MainClass {
 
 		stop.setVisible(false);
 		stop.setEnabled(false);
-		textWord1.setFont(new Font("¿¬Ìå", 1, 20));
-		textWord2.setFont(new Font("¿¬Ìå", 1, 20));
-		textOut.setFont(new Font("¿¬Ìå", 3, 20));
+		textWord1.setFont(new Font("æ¥·ä½“", 1, 20));
+		textWord2.setFont(new Font("æ¥·ä½“", 1, 20));
+		textOut.setFont(new Font("æ¥·ä½“", 3, 20));
 		textOut.setLineWrap(true);
 		showPicture.setEnabled(false);
 
@@ -635,37 +635,37 @@ public class MainClass {
 			public void actionPerformed(ActionEvent e) {
 				String word1 = textWord1.getText().toLowerCase();
 				String word2 = textWord2.getText().toLowerCase();
-				// µÚÒ»¸öµ¥´ÊÎª¿Õ
+				// ç¬¬ä¸€ä¸ªå•è¯ä¸ºç©º
 				if (word1.equals("")) {
-					textOut.setText("ÇëÊäÈëµ¥´Ê!");
+					textOut.setText("è¯·è¾“å…¥å•è¯!");
 				}
-				// Êä³ö Ò»¸öµãµ½ÆäËüËùÓĞµÄµãµÄ×î¶ÌÂ·¾¶
+				// è¾“å‡º ä¸€ä¸ªç‚¹åˆ°å…¶å®ƒæ‰€æœ‰çš„ç‚¹çš„æœ€çŸ­è·¯å¾„
 				else if (word2.equals("")
-						|| showPath.getText().equals("ÏÂÒ»¸öµ¥´Ê")) {// ´¦Àí×Ô¶¯Ìî³äºóµÄÇé¿ö
-					// È¡³öÏÂÒ»¸öµ¥´Ê
+						|| showPath.getText().equals("ä¸‹ä¸€ä¸ªå•è¯")) {// å¤„ç†è‡ªåŠ¨å¡«å……åçš„æƒ…å†µ
+					// å–å‡ºä¸‹ä¸€ä¸ªå•è¯
 					for (String tmp_word : multiShortPath) {
 						word2 = tmp_word;
 						multiShortPath.remove(word2);
 						break;
 					}
-					showPath.setText("ÏÂÒ»¸öµ¥´Ê");
+					showPath.setText("ä¸‹ä¸€ä¸ªå•è¯");
 					stop.setVisible(true);
 					stop.setEnabled(true);
 					textWord1.setEditable(false);
 					textWord2.setEditable(false);
 					textWord2.setText(word2);
 
-					// ¼ÆËã×î¶ÌÂ·¾¶
+					// è®¡ç®—æœ€çŸ­è·¯å¾„
 					String shortPath = calcShortestPath(g, word1, word2);
 					textOut.setText(shortPath);
-					// Â·¾¶´æÔÚ£¬Éú³ÉÍ¼Æ¬
+					// è·¯å¾„å­˜åœ¨ï¼Œç”Ÿæˆå›¾ç‰‡
 					if (shortPath.indexOf("->") >= 0) {
 						showPicture.setEnabled(true);
 						CreatePicture("ShortPath");
 					} else {
 						showPicture.setEnabled(false);
 					}
-				} else {// ¼ÆËãÖ¸¶¨2µãÖ®¼ä×î¶ÌÂ·¾¶
+				} else {// è®¡ç®—æŒ‡å®š2ç‚¹ä¹‹é—´æœ€çŸ­è·¯å¾„
 					String shortPath = calcShortestPath(g, word1, word2);
 					textOut.setText(shortPath);
 					if (shortPath.indexOf("->") >= 0) {
@@ -674,9 +674,9 @@ public class MainClass {
 						showPicture.setEnabled(false);
 					}
 				}
-				// Íê³ÉÊä³öÒ»¸öµãµ½ÆäËüËùÓĞµÄµãµÄ×î¶ÌÂ·¾¶
+				// å®Œæˆè¾“å‡ºä¸€ä¸ªç‚¹åˆ°å…¶å®ƒæ‰€æœ‰çš„ç‚¹çš„æœ€çŸ­è·¯å¾„
 				if (multiShortPath.isEmpty()) {
-					showPath.setText("Éú³ÉÂ·¾¶");
+					showPath.setText("ç”Ÿæˆè·¯å¾„");
 					stop.setVisible(false);
 					stop.setEnabled(false);
 					textWord1.setEditable(true);
@@ -700,7 +700,7 @@ public class MainClass {
 		});
 		stop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				showPath.setText("Éú³ÉÂ·¾¶");
+				showPath.setText("ç”Ÿæˆè·¯å¾„");
 				stop.setVisible(false);
 				stop.setEnabled(false);
 				textWord1.setEditable(true);
@@ -727,12 +727,12 @@ public class MainClass {
 
 	
 	public static JFrame WindowShowNewText() {
-		JFrame forthFrame = new JFrame("Éú³ÉĞÂÎÄ±¾");
-		JLabel labelIn = new JLabel("ÊäÈëĞÂÎÄ±¾");
-		JLabel labelOut = new JLabel("Éú³ÉĞÂÎÄ±¾");
+		JFrame forthFrame = new JFrame("ç”Ÿæˆæ–°æ–‡æœ¬");
+		JLabel labelIn = new JLabel("è¾“å…¥æ–°æ–‡æœ¬");
+		JLabel labelOut = new JLabel("ç”Ÿæˆæ–°æ–‡æœ¬");
 		JTextArea textIn = new JTextArea("", 10, 30);
 		JTextArea textOut = new JTextArea("", 10, 30);
-		JButton createNew = new JButton("¿ªÊ¼Éú³É");
+		JButton createNew = new JButton("å¼€å§‹ç”Ÿæˆ");
 		JScrollPane spIn = new JScrollPane(textIn);
 		JScrollPane spOut = new JScrollPane(textOut);
 
@@ -743,15 +743,15 @@ public class MainClass {
 		labelOut.setBounds(25, 255, 200, 40);
 		spOut.setBounds(25, 295, 425, 150);
 
-		textIn.setFont(new Font("¿¬Ìå", 1, 20));
-		textOut.setFont(new Font("¿¬Ìå", 1, 20));
+		textIn.setFont(new Font("æ¥·ä½“", 1, 20));
+		textOut.setFont(new Font("æ¥·ä½“", 1, 20));
 		textIn.setLineWrap(true);
 		textOut.setLineWrap(true);
 		createNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String originText = textIn.getText().toLowerCase();
 				if (originText.equals("")) {
-					textOut.setText("ÇëÊäÈëÎÄ±¾!");
+					textOut.setText("è¯·è¾“å…¥æ–‡æœ¬!");
 				} else {
 					String newText = generateNewText(g, originText);
 					textOut.setText(newText);
@@ -773,14 +773,14 @@ public class MainClass {
 
 	
 	public static JFrame WindowShowQueryBridge() {
-		JFrame fifthFrame = new JFrame("²éÑ¯ÇÅ½Ó´Ê");
+		JFrame fifthFrame = new JFrame("æŸ¥è¯¢æ¡¥æ¥è¯");
 		JTextField textWord1 = new JTextField("", 30);
 		JTextField textWord2 = new JTextField("", 30);
-		JLabel labelWord1 = new JLabel("ÊäÈëµ¥´Ê1");
-		JLabel labelWord2 = new JLabel("ÊäÈëµ¥´Ê2");
-		JLabel labelOut = new JLabel("ÇÅ½Ó´Ê²éÑ¯½á¹û");
+		JLabel labelWord1 = new JLabel("è¾“å…¥å•è¯1");
+		JLabel labelWord2 = new JLabel("è¾“å…¥å•è¯2");
+		JLabel labelOut = new JLabel("æ¡¥æ¥è¯æŸ¥è¯¢ç»“æœ");
 		JTextArea textOut = new JTextArea("", 10, 30);
-		JButton startQuery = new JButton("¿ªÊ¼²éÑ¯");
+		JButton startQuery = new JButton("å¼€å§‹æŸ¥è¯¢");
 		JScrollPane spOut = new JScrollPane(textOut);
 
 		fifthFrame.setLayout(null);
@@ -792,24 +792,24 @@ public class MainClass {
 		labelOut.setBounds(25, 140, 200, 40);
 		spOut.setBounds(25, 180, 425, 200);
 
-		textWord1.setFont(new Font("¿¬Ìå", 1, 20));
-		textWord2.setFont(new Font("¿¬Ìå", 1, 20));
-		textOut.setFont(new Font("¿¬Ìå", 3, 20));
+		textWord1.setFont(new Font("æ¥·ä½“", 1, 20));
+		textWord2.setFont(new Font("æ¥·ä½“", 1, 20));
+		textOut.setFont(new Font("æ¥·ä½“", 3, 20));
 		textOut.setLineWrap(true);
 		startQuery.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String word1 = textWord1.getText().toLowerCase();
 				String word2 = textWord2.getText().toLowerCase();
-				// ±£Ö¤µ¥´Ê´¿Ó¢ÎÄ
+				// ä¿è¯å•è¯çº¯è‹±æ–‡
 				word1.matches("[a-zA-Z]+");
 				if (word1.equals("") || word2.equals("")) {
-					textOut.setText("ÇëÊäÈëµ¥´Ê!");
+					textOut.setText("è¯·è¾“å…¥å•è¯!");
 				} else if (word1.matches("[a-zA-Z]+")
 						&& word2.matches("[a-zA-Z]+")) {
 					String tmpString = queryBridgeWords(g, word1, word2);
 					textOut.setText(tmpString);
 				} else {
-					textOut.setText("½öÊäÈëÓ¢ÎÄ!");
+					textOut.setText("ä»…è¾“å…¥è‹±æ–‡!");
 				}
 			}
 		});
@@ -833,12 +833,12 @@ public class MainClass {
 	public static JFrame WindowShowRandomWalk() {
 		int width = 800;
 		int height = 900;
-		JFrame RandomFrame = new JFrame("Ëæ»úÓÎ×ß");
+		JFrame RandomFrame = new JFrame("éšæœºæ¸¸èµ°");
 		JLabel picture = new JLabel();
 		JPanel panel = new JPanel();
 		JScrollPane sp = new JScrollPane(panel);
-		JButton nextWalk = new JButton("¿ªÊ¼");
-		JButton stopWalk = new JButton("Í£Ö¹");
+		JButton nextWalk = new JButton("å¼€å§‹");
+		JButton stopWalk = new JButton("åœæ­¢");
 		sp.getVerticalScrollBar().setUnitIncrement(10);
 		RandomFrame.setLayout(null);
 		nextWalk.setBounds(width / 4, height / 20, 100, 30);
@@ -853,24 +853,24 @@ public class MainClass {
 					gra.clearTmpDotFile("RandomWalk.dot");
 					path = hashtableMyclone(OriginPath);
 					Enumeration<String> words = g.keys();
-					// Ëæ»úÉú³ÉÆğÊ¼µ¥´Ê
+					// éšæœºç”Ÿæˆèµ·å§‹å•è¯
 					long tmplong = System.currentTimeMillis() % path.size();
 					int rand = (int) tmplong;
 					for (; rand > -1; rand--) {
 						StartWord = words.nextElement();
 					}
-					nextWalk.setText("ÏÂÒ»²½");
+					nextWalk.setText("ä¸‹ä¸€æ­¥");
 					stopWalk.setEnabled(true);
 					System.out.println("newPath:");
 					System.out.println(StartWord);
 				}
 				circulate=1;
-				Stack<String> path_ver = new Stack<String>();// ´æ·ÅÂ·¾¶¾­¹ıµÄµã
+				Stack<String> path_ver = new Stack<String>();// å­˜æ”¾è·¯å¾„ç»è¿‡çš„ç‚¹
 				path_ver.push(StartWord);
 				String word2=randomWalk(path);
 				String targetPath = OriginPath.substring(0,
-						OriginPath.lastIndexOf("\\") + 1);// µÃµ½´æ·Å½Å±¾ºÍÍ¼Æ¬µÄÂ·¾¶
-				// ÓĞÏÂÒ»¸öµ¥´Ê²¢ÏòÏÂ×ßÒ»²½
+						OriginPath.lastIndexOf("\\") + 1);// å¾—åˆ°å­˜æ”¾è„šæœ¬å’Œå›¾ç‰‡çš„è·¯å¾„
+				// æœ‰ä¸‹ä¸€ä¸ªå•è¯å¹¶å‘ä¸‹èµ°ä¸€æ­¥
 				if(!word2.equals("No next")) {
 					System.out.println(word2);
 					path_ver.push(word2);
@@ -886,10 +886,10 @@ public class MainClass {
 					}
 					panel.add(picture);
 					picture.setIcon(new ImageIcon(jpgImage));
-					// ¸üĞÂÆğÊ¼µ¥´Ê
+					// æ›´æ–°èµ·å§‹å•è¯
 					StartWord = word2;
 				}
-				// Ã»ÓĞÂ·¿É×ß£¬ÏÔÊ¾Ô­Ê¼Í¼Æ¬
+				// æ²¡æœ‰è·¯å¯èµ°ï¼Œæ˜¾ç¤ºåŸå§‹å›¾ç‰‡
 				else {
 					File jpgFile = new File(targetPath + "graph.jpg");
 					Image jpgImage = null;
@@ -901,7 +901,7 @@ public class MainClass {
 					panel.add(picture);
 					picture.setIcon(new ImageIcon(jpgImage));
 					circulate=0;
-					nextWalk.setText("¿ªÊ¼");
+					nextWalk.setText("å¼€å§‹");
 					stopWalk.setEnabled(false);
 				}
 			}
@@ -909,7 +909,7 @@ public class MainClass {
 		stopWalk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				circulate = 0;
-				nextWalk.setText("¿ªÊ¼");
+				nextWalk.setText("å¼€å§‹");
 				stopWalk.setEnabled(false);
 			}
 		});
@@ -917,7 +917,7 @@ public class MainClass {
 		RandomFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				circulate = 0;
-				nextWalk.setText("¿ªÊ¼");
+				nextWalk.setText("å¼€å§‹");
 				stopWalk.setEnabled(false);
 			}
 		});
@@ -989,5 +989,5 @@ public class MainClass {
 
 		}
 		return ret;
-	}
+		}
 }// D:\Java\project\Pair_txt\test.txt

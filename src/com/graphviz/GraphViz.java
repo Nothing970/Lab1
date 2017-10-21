@@ -15,26 +15,26 @@ import java.util.Set;
 import java.util.Stack;
 
 public class GraphViz {
-	private String runPath = "";// Í¼Æ¬+½Å±¾´æ·ÅÂ·¾¶
-	private String dotPath = "";// dot.exe¿ÉÖ´ĞĞÂ·¾¶
-	private String runOrder = "";// ÔËĞĞdot.exeµÄ²ÎÊı
-	private String dotCodeFile = "graph.dot";// ½Å±¾ÎÄ¼şÃû
-	private String resultGra = "graph";// Éú³ÉÍ¼Æ¬ÎÄ¼şÃû
-	private StringBuilder graph = new StringBuilder();// ½Å±¾ÎÄ¼ş»º³åÇø
+	private String runPath = "";// å›¾ç‰‡+è„šæœ¬å­˜æ”¾è·¯å¾„
+	private String dotPath = "";// dot.exeå¯æ‰§è¡Œè·¯å¾„
+	private String runOrder = "";// è¿è¡Œdot.exeçš„å‚æ•°
+	private String dotCodeFile = "graph.dot";// è„šæœ¬æ–‡ä»¶å
+	private String resultGra = "graph";// ç”Ÿæˆå›¾ç‰‡æ–‡ä»¶å
+	private StringBuilder graph = new StringBuilder();// è„šæœ¬æ–‡ä»¶ç¼“å†²åŒº
 	public static final String[] color = {"red", "chartreuse", "blue", "gold",
 			"darkgoldenrod", "fuchsia", "hotpink", "cadetblue", "green", "cyan",
-			"yellow"};// ¿ÉÑ¡ÏßÌõÑÕÉ«
+			"yellow"};// å¯é€‰çº¿æ¡é¢œè‰²
 
 	Runtime runtime = Runtime.getRuntime();
 
 	public void run() {
-		// ½Å±¾»º³åÇøÄÚÈİĞ´µ½½Å±¾ÎÄ¼şÖĞ
+		// è„šæœ¬ç¼“å†²åŒºå†…å®¹å†™åˆ°è„šæœ¬æ–‡ä»¶ä¸­
 		writeGraphToFile(graph.toString(), runPath);
-		// Éú³Édot.exeÔËĞĞËùĞè²ÎÊı
+		// ç”Ÿæˆdot.exeè¿è¡Œæ‰€éœ€å‚æ•°
 		creatOrder();
 		Process tmpProcess = null;
 		try {
-			tmpProcess = runtime.exec(runOrder);// µ÷ÓÃdot.exeÉú³ÉÍ¼Æ¬
+			tmpProcess = runtime.exec(runOrder);// è°ƒç”¨dot.exeç”Ÿæˆå›¾ç‰‡
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -47,7 +47,7 @@ public class GraphViz {
 	}
 
 	public void creatOrder() {
-		// Éú³ÉÔËĞĞÊ±²ÎÊı
+		// ç”Ÿæˆè¿è¡Œæ—¶å‚æ•°
 		runOrder += dotPath + " ";
 		runOrder += runPath;
 		runOrder += "\\" + dotCodeFile + " ";
@@ -59,7 +59,7 @@ public class GraphViz {
 	}
 
 	public void writeGraphToFile(String dotcode, String filename) {
-		// ½Å±¾»º³åÇøÄÚÈİĞ´µ½½Å±¾ÎÄ¼şÖĞ
+		// è„šæœ¬ç¼“å†²åŒºå†…å®¹å†™åˆ°è„šæœ¬æ–‡ä»¶ä¸­
 		try {
 			File file = new File(filename + "\\" + dotCodeFile);
 			if (!file.exists()) {
@@ -74,12 +74,12 @@ public class GraphViz {
 	}
 
 	public GraphViz(String dotPath) {
-		// ¹¹Ôìº¯Êı
+		// æ„é€ å‡½æ•°
 		File f = new File("");
 		try {
-			this.runPath = f.getCanonicalPath();// »ñÈ¡µ±Ç°ÏîÄ¿µÄ¸ùÄ¿Â¼
+			this.runPath = f.getCanonicalPath();// è·å–å½“å‰é¡¹ç›®çš„æ ¹ç›®å½•
 		} catch (IOException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 			e.printStackTrace();
 		}
 		this.dotPath = dotPath;
@@ -109,9 +109,9 @@ public class GraphViz {
 	public void setColorForPath(Stack<String> path_Stack, String color,
 			String dotName) {
 		
-		// ½«´ı±ê¼ÇµÄÃ¿Ìõ±ß¼ÓÈëSetÖĞ
+		// å°†å¾…æ ‡è®°çš„æ¯æ¡è¾¹åŠ å…¥Setä¸­
 		Set<String> path_Set = new HashSet<String>();
-		Stack<String> tmpStack = (Stack<String>) path_Stack.clone();// ´ı±ê¼ÇµÄÂ·¾¶£¨µã£©
+		Stack<String> tmpStack = (Stack<String>) path_Stack.clone();// å¾…æ ‡è®°çš„è·¯å¾„ï¼ˆç‚¹ï¼‰
 		String str1 = "";
 		String str2 = tmpStack.peek();
 		tmpStack.pop();
@@ -122,7 +122,7 @@ public class GraphViz {
 			str2 = str1;
 		}
 
-		// Èç¹ûÄ¿±ê½Å±¾ÎÄ¼ş²»´æÔÚ£¬´ÓÔ­Ê¼½Å±¾ÎÄ¼ş¿½±´
+		// å¦‚æœç›®æ ‡è„šæœ¬æ–‡ä»¶ä¸å­˜åœ¨ï¼Œä»åŸå§‹è„šæœ¬æ–‡ä»¶æ‹·è´
 		String targetFile = runPath + "\\" + dotName;
 		File outpuFile = new File(targetFile);
 		if (!outpuFile.exists()) {
@@ -141,7 +141,7 @@ public class GraphViz {
 		FileReader souceFileReader = null;
 
 		//prepare readStream
-		// ´ò¿ªÄ¿±ê½Å±¾ÎÄ¼ş£¨dotName£©
+		// æ‰“å¼€ç›®æ ‡è„šæœ¬æ–‡ä»¶ï¼ˆdotNameï¼‰
 		try {
 			souceFileReader = new FileReader(sourceFile);
 		} catch (FileNotFoundException e) {
@@ -150,12 +150,12 @@ public class GraphViz {
 		BufferedReader sourceBufferedReader = new BufferedReader(souceFileReader);
 		
 		//prepare writeStream
-		// ĞÂ½¨ÁÙÊ±½Å±¾ÎÄ¼ş£¬±£´æĞŞ¸Ä½á¹û
+		// æ–°å»ºä¸´æ—¶è„šæœ¬æ–‡ä»¶ï¼Œä¿å­˜ä¿®æ”¹ç»“æœ
 		outpuFile = new File(runPath + "\\tmp.dot");
 		try {
 			outpuFile.createNewFile();
 		} catch (IOException e2) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 			e2.printStackTrace();
 		}
 		FileOutputStream fout=null;
@@ -176,21 +176,21 @@ public class GraphViz {
          try {
 			bufWrite.write("digraph G {\n");
 		} catch (IOException e1) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 			e1.printStackTrace();
 		}
          
-		// ÖğĞĞ¶ÁÈ¡Ô´½Å±¾ÎÄ¼ş£¬½«ÔÚÖ¸¶¨Â·¾¶ÉÏµÄ±ß½øĞĞ±ê¼Ç
+		// é€è¡Œè¯»å–æºè„šæœ¬æ–‡ä»¶ï¼Œå°†åœ¨æŒ‡å®šè·¯å¾„ä¸Šçš„è¾¹è¿›è¡Œæ ‡è®°
 		try {
 			while((tmp_str = sourceBufferedReader.readLine())!=null) {
-				if ((pos = tmp_str.indexOf("[")) < 0) {// ÅÅ³ı½Å±¾ÎÄ¼şµÄÍ·Î²+¿ÕĞĞ
+				if ((pos = tmp_str.indexOf("[")) < 0) {// æ’é™¤è„šæœ¬æ–‡ä»¶çš„å¤´å°¾+ç©ºè¡Œ
 					continue;
 				}
 				String edge = tmp_str.substring(tmp_str.indexOf("\t") + 1, pos);
-				if (path_Set.contains(edge)) {// µ±Ç°µÄ±ßÔÚ´ı±ê¼ÇµÄÂ·¾¶ÉÏ
+				if (path_Set.contains(edge)) {// å½“å‰çš„è¾¹åœ¨å¾…æ ‡è®°çš„è·¯å¾„ä¸Š
 					StringBuffer tmpBuffer = new StringBuffer(tmp_str);
 					pos = tmp_str.indexOf("]");
-					if (tmp_str.indexOf("color") >= 0) {// ÒÑ¾­°üº¬ÔÚÄ³ÌõÂ·¾¶ÖĞ£¬ÖÃÎªĞéÏß
+					if (tmp_str.indexOf("color") >= 0) {// å·²ç»åŒ…å«åœ¨æŸæ¡è·¯å¾„ä¸­ï¼Œç½®ä¸ºè™šçº¿
 						tmpBuffer.insert(pos,
 								" style=tapered penwidth=4 arrowtail=normal");
 					} else {
@@ -199,7 +199,7 @@ public class GraphViz {
 					tmp_str = tmpBuffer.toString();
 				}
 				tmp_str += "\n";
-				// ĞŞ¸ÄºóĞ´µ½ÁÙÊ±½Å±¾ÎÄ¼şÖĞ
+				// ä¿®æ”¹åå†™åˆ°ä¸´æ—¶è„šæœ¬æ–‡ä»¶ä¸­
 				bufWrite.write(tmp_str);
 			}
 		} catch (IOException e) {
@@ -213,12 +213,12 @@ public class GraphViz {
 			fout.close();
 			sourceBufferedReader.close();
 			souceFileReader.close();
-			sourceFile.delete();// É¾³ıÔ´½Å±¾ÎÄ¼ş
+			sourceFile.delete();// åˆ é™¤æºè„šæœ¬æ–‡ä»¶
 			} catch (IOException e1) {
-				// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+				// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 				e1.printStackTrace();
 			}
-		outpuFile.renameTo(sourceFile);// ½«ÁÙÊ±½Å±¾ÎÄ¼şÖØÃüÃûÎ²Ô´½Å±¾ÎÄ¼ş£¬¹©ÏÂ´ÎÊ¹ÓÃ
+		outpuFile.renameTo(sourceFile);// å°†ä¸´æ—¶è„šæœ¬æ–‡ä»¶é‡å‘½åå°¾æºè„šæœ¬æ–‡ä»¶ï¼Œä¾›ä¸‹æ¬¡ä½¿ç”¨
 	}
 
 	public void end_graph() {
@@ -226,7 +226,7 @@ public class GraphViz {
 	}
 
 	public void clearTmpDotFile(String dotName) {
-		// Çå³ıÁÙÊ±½Å±¾ÎÄ¼ş
+		// æ¸…é™¤ä¸´æ—¶è„šæœ¬æ–‡ä»¶
 		String fileNameString = runPath + "\\" + dotName;
 		File tmpFile = new File(fileNameString);
 		if (tmpFile.exists()) {
