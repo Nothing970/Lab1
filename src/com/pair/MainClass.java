@@ -260,10 +260,10 @@ public class MainClass {
 		try {
 			tmp_node = G.get(word1).links;
 		} catch (Exception e) {
-			return "No \"" + word1 + "\" in the graph!";
+			return "No \"" + word1 + "\" or \"" + word2 + "\"in the graph!";
 		}
 		if (G.get(word2) == null) {
-			return "No \"" + word2 + "\" in the graph!";
+			return "No \"" + word1 + "\" or \"" + word2 + "\"in the graph!";
 		}
 		// word1->mid_ver->word2
 		Node mid_node = null;// mid_ver出边指向的点
