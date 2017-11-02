@@ -37,7 +37,7 @@ public class MainClass {
 	private static String OriginPath = null;// txt 的目录
 	private static Hashtable<String, Graph_vertex> g = null;// 图结构
 	private static Short_path spath = null;// 存储最短路径的多条路径
-	private static String StartWord = null;// 随机游走起始单词
+	public static String StartWord = null;// 随机游走起始单词
 	private static Hashtable<String, Graph_vertex> path = null;// 随机游走所需的图结构，不能与原图公用
 	private static Set<String> multiShortPath = new HashSet<String>();// 最短路径只输一个单词，存储未到达过的点
 
